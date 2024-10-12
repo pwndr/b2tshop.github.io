@@ -18,8 +18,8 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            position: relative;
+            justify-content: center;
+            align-items: center;
         }
 
         @keyframes backgroundAnimation {
@@ -55,7 +55,8 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-            width: 400px;
+            width: 90%;
+            max-width: 400px;
             margin: 0 auto;
             text-align: center;
             animation: floatAnimation 3s ease-in-out infinite;
@@ -83,6 +84,7 @@
             border-radius: 5px;
             font-size: 1rem;
             font-family: 'Poppins', sans-serif;
+            position: relative;
         }
 
         .login-container button {
@@ -123,6 +125,21 @@
             right: 15px;
             top: 35px;
             color: #001f3f; /* Couleur de l'icône */
+            font-size: 1.2rem; /* Taille de l'icône */
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                font-size: 2rem; /* Réduire la taille du texte pour mobile */
+            }
+            .login-container h2 {
+                font-size: 1.5rem; /* Réduire la taille du titre */
+            }
         }
     </style>
 </head>
@@ -137,12 +154,12 @@
             <input type="text" id="username" placeholder="Nom d'utilisateur" required>
             <input type="email" id="email" placeholder="Adresse e-mail" required>
             <div class="error-message" id="emailError">Cet e-mail est déjà utilisé.</div>
-            <div style="position: relative;">
+            <div class="input-container">
                 <input type="password" id="password" placeholder="Mot de passe" required oninput="checkPasswordStrength()">
                 <span class="toggle-password" id="togglePassword" onclick="togglePasswordVisibility('password')">👁️</span>
             </div>
             <div class="password-strength" id="passwordStrength"></div>
-            <div style="position: relative;">
+            <div class="input-container">
                 <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
                 <span class="toggle-password" id="toggleConfirmPassword" onclick="togglePasswordVisibility('confirmPassword')">👁️</span>
             </div>
@@ -211,19 +228,30 @@
             }
 
             if (password !== confirmPassword) {
-                document.getElementById("emailError").innerText = "Les mots de passe ne correspondent pas !";
+                document.getElementById("emailError").innerText = "Les mots de passe ne correspondent pas.";
                 document.getElementById("emailError").style.display = "block"; // Afficher le message d'erreur
                 return;
             }
 
-            // Si tout est bon, procéder à l'inscription (ajouter votre logique ici)
+            // Si tout est correct, simuler l'inscription (ajouter l'e-mail à la liste existante)
+            existingEmails.push(email);
             alert("Inscription réussie !");
+            document.getElementById("registrationForm").reset(); // Réinitialiser le formulaire
+            document.getElementById("passwordStrength").style.width = '0%'; // Réinitialiser la barre de force
         });
 
         // Fonction pour basculer la visibilité du mot de passe
-        function togglePasswordVisibility(inputId) {
-            const passwordInput = document.getElementById(inputId);
-            const type = passwordInput.type === "password" ? "text" : "password";
-            passwordInput.type = type;
+        function togglePasswordVisibility(id) {
+            const passwordField = document.getElementById(id);
+            const passwordToggle = document.getElementById("toggle" + (id === 'password' ? '' : 'ConfirmPassword'));
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                passwordToggle.textContent = "🙈"; // Icône pour masquer
+            } else {
+                passwordField.type = "password";
+                passwordToggle.textContent = "👁️"; // Icône pour afficher
+            }
         }
-    </
+    </script>
+</body>
+</html>
