@@ -14,7 +14,6 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            transition: background 0.5s;
         }
 
         .container {
@@ -148,19 +147,6 @@
         hamburger.addEventListener('click', () => {
             menu.classList.toggle('active');
         });
-
-        // Animation shake du fond
-        if (window.DeviceMotionEvent) {
-            window.addEventListener('devicemotion', (event) => {
-                const x = event.accelerationIncludingGravity.x;
-                const y = event.accelerationIncludingGravity.y;
-                const shakeStrength = Math.sqrt(x * x + y * y);
-
-                if (shakeStrength > 10) { // Seuil pour déclencher l'animation
-                    document.body.style.backgroundPosition = `${Math.random() * 10}px ${Math.random() * 10}px`;
-                }
-            });
-        }
     </script>
 </body>
 </html>
