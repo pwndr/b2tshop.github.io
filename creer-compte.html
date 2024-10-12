@@ -28,6 +28,17 @@
             100% { background-position: 0% 50%; }
         }
 
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .logo-container img {
+            width: 50px;
+            cursor: pointer;
+        }
+
         header {
             text-align: center;
             padding: 30px;
@@ -114,9 +125,9 @@
         }
 
         .error-message {
-            color: #ff4d4d; /* Rouge pour les messages d'erreur */
+            color: #ff4d4d;
             margin-top: 10px;
-            display: none; /* Masquer par défaut */
+            display: none;
         }
 
         .toggle-password {
@@ -124,8 +135,8 @@
             position: absolute;
             right: 15px;
             top: 35px;
-            color: #001f3f; /* Couleur de l'icône */
-            font-size: 1.2rem; /* Taille de l'icône */
+            color: #001f3f;
+            font-size: 1.2rem;
         }
 
         .input-container {
@@ -135,15 +146,25 @@
 
         @media (max-width: 600px) {
             header {
-                font-size: 2rem; /* Réduire la taille du texte pour mobile */
+                font-size: 2rem;
             }
             .login-container h2 {
-                font-size: 1.5rem; /* Réduire la taille du titre */
+                font-size: 1.5rem;
+            }
+            .logo-container img {
+                width: 40px; /* Réduction de la taille du logo pour mobile */
             }
         }
     </style>
 </head>
 <body>
+    <!-- Logo cliquable pour revenir à l'accueil -->
+    <div class="logo-container">
+        <a href="index.html">
+            <img src="logo.png" alt="Retour à l'accueil">
+        </a>
+    </div>
+
     <header>
         <h1>Créer un compte</h1>
     </header>
@@ -208,36 +229,32 @@
         }
 
         // Simuler la vérification de l'e-mail
-        const existingEmails = ["test@example.com", "user@example.com"]; // Liste d'e-mails existants
+        const existingEmails = ["test@example.com", "user@example.com"];
 
-        // Gestion de l'envoi de l'e-mail
         document.getElementById("registrationForm").addEventListener("submit", function(event) {
             event.preventDefault();
 
-            // Vérifiez que le mot de passe et la confirmation correspondent
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
             const email = document.getElementById("email").value;
 
-            // Vérifier si l'e-mail est déjà utilisé
             if (existingEmails.includes(email)) {
-                document.getElementById("emailError").style.display = "block"; // Afficher le message d'erreur
+                document.getElementById("emailError").style.display = "block";
                 return;
             } else {
-                document.getElementById("emailError").style.display = "none"; // Masquer le message d'erreur
+                document.getElementById("emailError").style.display = "none";
             }
 
             if (password !== confirmPassword) {
                 document.getElementById("emailError").innerText = "Les mots de passe ne correspondent pas.";
-                document.getElementById("emailError").style.display = "block"; // Afficher le message d'erreur
+                document.getElementById("emailError").style.display = "block";
                 return;
             }
 
-            // Si tout est correct, simuler l'inscription (ajouter l'e-mail à la liste existante)
             existingEmails.push(email);
             alert("Inscription réussie !");
-            document.getElementById("registrationForm").reset(); // Réinitialiser le formulaire
-            document.getElementById("passwordStrength").style.width = '0%'; // Réinitialiser la barre de force
+            document.getElementById("registrationForm").reset();
+            document.getElementById("passwordStrength").style.width = '0%';
         });
 
         // Fonction pour basculer la visibilité du mot de passe
@@ -246,10 +263,10 @@
             const passwordToggle = document.getElementById("toggle" + (id === 'password' ? '' : 'ConfirmPassword'));
             if (passwordField.type === "password") {
                 passwordField.type = "text";
-                passwordToggle.textContent = "🙈"; // Icône pour masquer
+                passwordToggle.textContent = "🙈";
             } else {
                 passwordField.type = "password";
-                passwordToggle.textContent = "👁️"; // Icône pour afficher
+                passwordToggle.textContent = "👁️";
             }
         }
     </script>
