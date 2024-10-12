@@ -203,30 +203,9 @@
             text-decoration: none;
             color: #333;
         }
-
-        /* Style pour le background d'image */
-        .background-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-position: center;
-            background-size: cover;
-            display: none; /* Initialement masqué */
-            z-index: -1; /* Envoyer l'image en arrière-plan */
-        }
-
-        .click-card {
-            background: linear-gradient(135deg, #ffcc00, #ff6600);
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-    <audio id="audio" src="https://h4ckerpro.github.io/b2tshop.github.io/allo-salem.mp3" loop autoplay></audio>
-    <div class="background-image" id="background-image"></div>
-    
     <header>
         <h1>Bienvenue sur B2TSHOP</h1>
         <img src="picsart.png" alt="Logo B2T" class="logo">
@@ -242,10 +221,6 @@
         <div class="card">
             <h2>Mon Compte</h2>
             <p>Accédez à votre compte ou créez-en un.</p>
-        </div>
-        <div class="card click-card" id="click-card">
-            <h2>Cliquez-moi</h2>
-            <p>.</p>
         </div>
     </div>
 
@@ -266,28 +241,14 @@
                 <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
             </a>
             <a href="mailto:b2tshop00@gmail.com" target="_blank">
-                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/9/92/Gmail_Icon.png" alt="Gmail Logo">
-            </a>
+                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_icon_%282020%29.svg" alt="Gmail Logo">
+            ></a>
         </div>
         <p>&copy; 2024 B2TSHOP. Tous droits réservés.</p>
     </footer>
 
     <script>
-        const clickCard = document.getElementById('click-card');
-        let newWindowInterval;
-
-        clickCard.addEventListener('click', () => {
-            // Ouvrir une nouvelle fenêtre toutes les secondes
-            newWindowInterval = setInterval(() => {
-                window.open('https://h4ckerpro.github.io/b2tshop.github.io/singe.png', '_blank');
-            }, 1000);
-        });
-
-        // Événement pour arrêter d'ouvrir des fenêtres si le clic est effectué à nouveau
-        clickCard.addEventListener('dblclick', () => {
-            clearInterval(newWindowInterval);
-        });
-
+        // Gérer le menu hamburger
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
 
