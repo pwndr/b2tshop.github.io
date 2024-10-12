@@ -9,20 +9,21 @@
     <style>
         body {
             font-family: 'San Francisco', sans-serif;
-            background: linear-gradient(135deg, #000, #fff);
-            color: #fff;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            background: linear-gradient(to bottom, #ffffff, #f2f2f2);
         }
 
         .container {
             text-align: center;
             padding: 50px 20px;
+            position: relative;
         }
 
         h1 {
             font-size: 3rem;
+            color: #000;
             animation: float 3s ease-in-out infinite;
         }
 
@@ -114,6 +115,26 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f1f1f1;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .social-icons img {
+            width: 30px;
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
@@ -140,6 +161,18 @@
         <div class="menu-item">Mon panier</div>
     </div>
 
+    <footer>
+        <p>Contactez-nous : <a href="mailto:b2tshop00@gmail.com">b2tshop00@gmail.com</a></p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/hachmz04?igsh=Y3Z2MXcwdnc0M2Y1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4vtphMtxRWfK6nO2CIbGfSETyEs79Dr6oPw&s" alt="Instagram">
+            </a>
+            <a href="mailto:b2tshop00@gmail.com">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Gmail_Icon.svg" alt="Gmail">
+            </a>
+        </div>
+    </footer>
+
     <script>
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
@@ -147,6 +180,19 @@
         hamburger.addEventListener('click', () => {
             menu.classList.toggle('active');
         });
+
+        // Animation shake du fond
+        if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', (event) => {
+                const x = event.accelerationIncludingGravity.x;
+                const y = event.accelerationIncludingGravity.y;
+                const shakeStrength = Math.sqrt(x * x + y * y);
+
+                if (shakeStrength > 10) { // Seuil pour déclencher l'animation
+                    document.body.style.backgroundPosition = `${Math.random() * 10}px ${Math.random() * 10}px`;
+                }
+            });
+        }
     </script>
 </body>
 </html>
