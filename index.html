@@ -50,13 +50,6 @@
             100% { transform: translateY(-50px); }
         }
 
-        .logo {
-            width: 150px;
-            display: block;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
         .description {
             font-size: 1.2rem;
             margin: 10px 0;
@@ -134,19 +127,11 @@
             transform: scale(1.2);
         }
 
-        /* Styles pour l'icône Instagram */
-        .instagram {
+        .instagram, .gmail {
             width: 40px;
             height: 40px;
         }
 
-        /* Styles pour l'icône Gmail */
-        .gmail {
-            width: 40px;
-            height: 40px;
-        }
-
-        /* Styles pour l'icône hamburger */
         .hamburger-icon {
             position: absolute;
             top: 20px;
@@ -172,7 +157,6 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        /* État de transformation de l'icône en croix */
         .hamburger-icon.active span:nth-child(1) {
             transform: rotate(45deg) translate(10px, 10px);
         }
@@ -185,7 +169,6 @@
             transform: rotate(-45deg) translate(10px, -10px);
         }
 
-        /* Styles pour le menu */
         .menu {
             position: absolute;
             top: 80px;
@@ -193,7 +176,7 @@
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             padding: 15px;
-            display: none; /* Caché par défaut */
+            display: none;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
             z-index: 999;
             animation: menuSlide 0.5s ease forwards;
@@ -218,69 +201,59 @@
             display: block;
             margin: 10px 0;
             text-decoration: none;
-            color: #000;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-
-        .menu a:hover {
-            color: #007bff;
+            color: #333;
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>Bienvenue sur B2TSHOP</h1>
+        <img src="picsart.png" alt="Logo B2T" class="logo">
+    </header>
+    
+    <div class="description">Retrouvez tout type de produits sur notre site.</div>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Boutique</h2>
+            <p>Accédez à la boutique.</p>
+        </div>
+        <div class="card">
+            <h2>Mon Compte</h2>
+            <p>Accédez à votre compte ou créez-en un.</p>
+        </div>
+    </div>
 
-    <!-- Icône hamburger -->
-    <button class="hamburger-icon" onclick="toggleMenu()">
+    <button class="hamburger-icon" id="hamburger">
         <span></span>
         <span></span>
         <span></span>
     </button>
-
-    <!-- Menu caché -->
     <div class="menu" id="menu">
         <a href="#">Se connecter</a>
         <a href="#">Créer un compte</a>
         <a href="#">Mon panier</a>
     </div>
 
-    <header>
-        <div style="animation: flyAnimation 2s ease forwards;">B2T</div>
-    </header>
-
-    <div class="container">
-        <!-- Carte Boutique -->
-        <div class="card">
-            <h2>Boutique</h2>
-            <p>Accédez à la boutique.</p>
-        </div>
-
-        <!-- Carte Mon compte -->
-        <div class="card">
-            <h2>Mon compte</h2>
-            <p>Accédez à votre compte ou créez-en un.</p>
-        </div>
-    </div>
-
-    <!-- Footer avec logo Instagram et Gmail -->
     <footer>
         <div class="socials">
             <a href="https://www.instagram.com/hachmz04?igsh=Y3Z2MXcwdnc0M2Y1" target="_blank">
                 <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
             </a>
             <a href="mailto:b2tshop00@gmail.com" target="_blank">
-                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Gmail_Icon.svg" alt="Gmail Logo">
+                <img class="gmail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4vtphMtxRWfK6nO2CIbGfSETyEs79Dr6oPw&s" alt="Gmail Logo">
             </a>
         </div>
     </footer>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            const hamburger = document.querySelector('.hamburger-icon');
-            menu.classList.toggle('active');
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+
+        hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
-        }
+            menu.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
