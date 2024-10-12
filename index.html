@@ -31,7 +31,7 @@
         header {
             text-align: center;
             padding: 30px;
-            font-size: 2.5rem; /* Taille du titre réduite */
+            font-size: 2.5rem;
             font-weight: bold;
             background: linear-gradient(90deg, #000000, #ffffff);
             -webkit-background-clip: text;
@@ -136,8 +136,8 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            width: 40px; /* Taille réduite */
-            height: 40px; /* Taille réduite */
+            width: 40px;
+            height: 40px;
             background-color: transparent;
             border: none;
             cursor: pointer;
@@ -152,7 +152,7 @@
         .hamburger-icon span {
             display: block;
             width: 100%;
-            height: 5px; /* Épaisseur réduite */
+            height: 5px;
             background-color: #fff;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
@@ -203,9 +203,78 @@
             text-decoration: none;
             color: #333;
         }
+
+        /* Styles pour la pop-up */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+            animation: popupAnimation 0.5s ease-out forwards;
+        }
+
+        .popup-content h2 {
+            color: #ff0000;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .popup-content p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .popup-content button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .popup-content button#accept {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .popup-content button#decline {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        @keyframes popupAnimation {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
+    <!-- Pop-up d'avertissement -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h2>⚠️ Ce site est en construction ⚠️</h2>
+            <p>Ce site est actuellement en phase de test, êtes-vous sûr de vouloir y accéder ?</p>
+            <button id="accept">Oui</button>
+            <button id="decline">Non</button>
+        </div>
+    </div>
+
     <header>
         <h1>Bienvenue sur B2TSHOP</h1>
         <img src="picsart.png" alt="Logo B2T" class="logo">
@@ -217,38 +286,40 @@
         <div class="card">
             <h2>Boutique</h2>
             <p>Accédez à la boutique.</p>
+            </div>
+        <div class="card">
+            <h2>Services</h2>
+            <p>Découvrez nos services.</p>
         </div>
         <div class="card">
-            <h2>Mon Compte</h2>
-            <p>Accédez à votre compte ou créez-en un.</p>
+            <h2>Contact</h2>
+            <p>Contactez-nous pour plus d'informations.</p>
         </div>
     </div>
+    
+    <footer>
+        <div class="socials">
+            <a href="#">Instagram</a>
+            <a href="#">Gmail</a>
+        </div>
+        <p>&copy; 2024 B2TSHOP. Tous droits réservés.</p>
+    </footer>
 
     <button class="hamburger-icon" id="hamburger">
         <span></span>
         <span></span>
         <span></span>
     </button>
-    <div class="menu" id="menu">
-        <a href="#">Se connecter</a>
-        <a href="creer-compte.html">Créer un compte</a>
-        <a href="#">Mon panier</a>
-    </div>
 
-    <footer>
-        <div class="socials">
-            <a href="https://www.instagram.com/hachmz04?igsh=Y3Z2MXcwdnc0M2Y1" target="_blank">
-                <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
-            </a>
-            <a href="mailto:b2tshop00@gmail.com" target="_blank">
-                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_icon_%282020%29.svg" alt="Gmail Logo">
-            ></a>
-        </div>
-        <p>&copy; 2024 B2TSHOP. Tous droits réservés.</p>
-    </footer>
+    <nav class="menu" id="menu">
+        <a href="#">Accueil</a>
+        <a href="#">Produits</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </nav>
 
     <script>
-        // Gérer le menu hamburger
+        // Gérer l'icône du menu hamburger
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
 
@@ -256,6 +327,21 @@
             hamburger.classList.toggle('active');
             menu.classList.toggle('active');
         });
+
+        // Pop-up d'avertissement
+        const popup = document.getElementById('popup');
+        const acceptBtn = document.getElementById('accept');
+        const declineBtn = document.getElementById('decline');
+
+        // Lorsque l'utilisateur accepte
+        acceptBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // Lorsque l'utilisateur refuse
+        declineBtn.addEventListener('click', () => {
+            window.location.href = 'https://www.google.com'; // Rediriger l'utilisateur vers un autre site
+        });
     </script>
 </body>
-    </html>
+</html>
