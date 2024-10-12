@@ -116,6 +116,14 @@
             margin-top: 10px;
             display: none; /* Masquer par défaut */
         }
+
+        .toggle-password {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 35px;
+            color: #001f3f; /* Couleur de l'icône */
+        }
     </style>
 </head>
 <body>
@@ -129,9 +137,15 @@
             <input type="text" id="username" placeholder="Nom d'utilisateur" required>
             <input type="email" id="email" placeholder="Adresse e-mail" required>
             <div class="error-message" id="emailError">Cet e-mail est déjà utilisé.</div>
-            <input type="password" id="password" placeholder="Mot de passe" required oninput="checkPasswordStrength()">
+            <div style="position: relative;">
+                <input type="password" id="password" placeholder="Mot de passe" required oninput="checkPasswordStrength()">
+                <span class="toggle-password" id="togglePassword" onclick="togglePasswordVisibility('password')">👁️</span>
+            </div>
             <div class="password-strength" id="passwordStrength"></div>
-            <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
+            <div style="position: relative;">
+                <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
+                <span class="toggle-password" id="toggleConfirmPassword" onclick="togglePasswordVisibility('confirmPassword')">👁️</span>
+            </div>
             <button type="submit">S'inscrire</button>
         </form>
     </div>
@@ -205,6 +219,11 @@
             // Si tout est bon, procéder à l'inscription (ajouter votre logique ici)
             alert("Inscription réussie !");
         });
-    </script>
-</body>
-</html>
+
+        // Fonction pour basculer la visibilité du mot de passe
+        function togglePasswordVisibility(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const type = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = type;
+        }
+    </
