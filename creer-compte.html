@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             color: #fff;
-            background: linear-gradient(135deg, #001f3f, #ffff00); /* Dégradé bleu marine à jaune */
+            background: linear-gradient(135deg, #001f3f, #ffff00);
             background-size: 400% 400%;
             animation: backgroundAnimation 10s ease infinite;
             height: 100vh;
@@ -33,7 +33,7 @@
             padding: 30px;
             font-size: 2.5rem;
             font-weight: bold;
-            background: linear-gradient(90deg, #001f3f, #ffff00); /* Dégradé bleu marine à jaune pour le texte */
+            background: linear-gradient(90deg, #001f3f, #ffff00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: titleAnimation 4s ease infinite, flyAnimation 2s ease forwards;
@@ -52,11 +52,11 @@
 
         .login-container {
             background-color: rgba(255, 255, 255, 0.8);
-            padding: 40px; /* Augmente le padding pour plus d'espace */
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-            width: 400px; /* Augmente la largeur du conteneur */
-            margin: 0 auto; /* Centrer le conteneur */
+            width: 400px;
+            margin: 0 auto;
             text-align: center;
             animation: floatAnimation 3s ease-in-out infinite;
         }
@@ -68,16 +68,16 @@
 
         .login-container h2 {
             font-size: 2rem;
-            color: #001f3f; /* Bleu marine */
+            color: #001f3f;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, #001f3f, #ffff00); /* Dégradé bleu marine à jaune */
+            background: linear-gradient(90deg, #001f3f, #ffff00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .login-container input {
             width: 100%;
-            padding: 12px; /* Augmente le padding des champs de saisie */
+            padding: 12px;
             margin: 10px 0;
             border: none;
             border-radius: 5px;
@@ -85,19 +85,10 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .password-strength {
-            height: 10px;
-            width: 100%;
-            border-radius: 5px;
-            background-color: #e0e0e0; /* Couleur de fond par défaut */
-            margin: 10px 0;
-            transition: background-color 0.3s; /* Transition pour la couleur */
-        }
-
         .login-container button {
             width: 100%;
-            padding: 12px; /* Augmente le padding du bouton */
-            background-color: #ffcc00; /* Jaune foncé */
+            padding: 12px;
+            background-color: #ffcc00;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -105,17 +96,25 @@
             font-family: 'Poppins', sans-serif;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            opacity: 0.5; /* Démarre avec le bouton désactivé */
-            pointer-events: none; /* Désactive les événements du bouton */
-        }
-
-        .login-container button.enabled {
-            opacity: 1; /* Rendre le bouton visible quand activé */
-            pointer-events: auto; /* Réactive les événements du bouton */
         }
 
         .login-container button:hover {
-            background-color: #ff9900; /* Orange clair au survol */
+            background-color: #ff9900;
+        }
+
+        .password-strength {
+            height: 10px;
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .error-message {
+            color: #ff4d4d; /* Rouge pour les messages d'erreur */
+            margin-top: 10px;
+            display: none; /* Masquer par défaut */
         }
     </style>
 </head>
@@ -126,13 +125,14 @@
     
     <div class="login-container">
         <h2>Inscription</h2>
-        <form id="signupForm">
-            <input type="text" placeholder="Nom d'utilisateur" required>
-            <input type="email" placeholder="Adresse e-mail" required>
-            <input type="password" id="password" placeholder="Mot de passe" required>
+        <form id="registrationForm">
+            <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+            <input type="email" id="email" placeholder="Adresse e-mail" required>
+            <div class="error-message" id="emailError">Cet e-mail est déjà utilisé.</div>
+            <input type="password" id="password" placeholder="Mot de passe" required oninput="checkPasswordStrength()">
             <div class="password-strength" id="passwordStrength"></div>
             <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
-            <button type="submit" id="submitButton">S'inscrire</button>
+            <button type="submit">S'inscrire</button>
         </form>
     </div>
 
@@ -141,62 +141,69 @@
     </footer>
 
     <script>
-        const passwordInput = document.getElementById('password');
-        const confirmPasswordInput = document.getElementById('confirmPassword');
-        const passwordStrengthBar = document.getElementById('passwordStrength');
-        const submitButton = document.getElementById('submitButton');
-
-        passwordInput.addEventListener('input', function() {
-            const password = passwordInput.value;
+        // Vérifier la force du mot de passe
+        function checkPasswordStrength() {
+            const password = document.getElementById("password").value;
+            const strengthBar = document.getElementById("passwordStrength");
             let strength = 0;
 
-            // Vérification de la force du mot de passe
-            if (password.length >= 18) strength++; // Longueur minimale
-            if (/[A-Z]/.test(password)) strength++; // Lettre majuscule
-            if (/[a-z]/.test(password)) strength++; // Lettre minuscule
-            if (/[0-9]/.test(password)) strength++; // Chiffre
-            if (/[\W_]/.test(password)) strength++; // Caractère spécial
+            if (password.length >= 18) strength += 1;
+            if (/[A-Z]/.test(password)) strength += 1; // Contient une majuscule
+            if (/[0-9]/.test(password)) strength += 1; // Contient un chiffre
+            if (/[^a-zA-Z0-9]/.test(password)) strength += 1; // Contient un caractère spécial
 
-            // Changer la couleur de la barre en fonction de la force
             switch (strength) {
                 case 0:
+                    strengthBar.style.width = '0%';
+                    strengthBar.style.backgroundColor = '#e0e0e0';
+                    break;
                 case 1:
-                    passwordStrengthBar.style.width = '100%';
-                    passwordStrengthBar.style.backgroundColor = 'red';
-                    submitButton.classList.remove('enabled'); // Désactiver le bouton
+                    strengthBar.style.width = '25%';
+                    strengthBar.style.backgroundColor = '#ff4d4d'; // Rouge
                     break;
                 case 2:
-                    passwordStrengthBar.style.width = '100%';
-                    passwordStrengthBar.style.backgroundColor = 'orange';
-                    submitButton.classList.remove('enabled'); // Désactiver le bouton
+                    strengthBar.style.width = '50%';
+                    strengthBar.style.backgroundColor = '#ffcc00'; // Jaune
                     break;
                 case 3:
-                    passwordStrengthBar.style.width = '100%';
-                    passwordStrengthBar.style.backgroundColor = 'yellow';
-                    submitButton.classList.remove('enabled'); // Désactiver le bouton
+                    strengthBar.style.width = '75%';
+                    strengthBar.style.backgroundColor = '#4dff4d'; // Vert
                     break;
                 case 4:
-                case 5:
-                    passwordStrengthBar.style.width = '100%';
-                    passwordStrengthBar.style.backgroundColor = 'green';
-                    submitButton.classList.add('enabled'); // Activer le bouton
+                    strengthBar.style.width = '100%';
+                    strengthBar.style.backgroundColor = '#4dff4d'; // Vert
                     break;
-                default:
-                    passwordStrengthBar.style.width = '0%';
-                    passwordStrengthBar.style.backgroundColor = 'transparent';
-                    submitButton.classList.remove('enabled'); // Désactiver le bouton
             }
-        });
+        }
 
-        document.getElementById('signupForm').addEventListener('submit', function(event) {
+        // Simuler la vérification de l'e-mail
+        const existingEmails = ["test@example.com", "user@example.com"]; // Liste d'e-mails existants
+
+        // Gestion de l'envoi de l'e-mail
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            if (passwordInput.value !== confirmPasswordInput.value) {
-                alert('Les mots de passe ne correspondent pas !');
+
+            // Vérifiez que le mot de passe et la confirmation correspondent
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const email = document.getElementById("email").value;
+
+            // Vérifier si l'e-mail est déjà utilisé
+            if (existingEmails.includes(email)) {
+                document.getElementById("emailError").style.display = "block"; // Afficher le message d'erreur
+                return;
+            } else {
+                document.getElementById("emailError").style.display = "none"; // Masquer le message d'erreur
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById("emailError").innerText = "Les mots de passe ne correspondent pas !";
+                document.getElementById("emailError").style.display = "block"; // Afficher le message d'erreur
                 return;
             }
 
-            alert('Formulaire soumis ! (Ceci est une démo sans traitement backend)');
-            // Vous pouvez ajouter ici le code pour traiter le formulaire.
+            // Si tout est bon, procéder à l'inscription (ajouter votre logique ici)
+            alert("Inscription réussie !");
         });
     </script>
 </body>
