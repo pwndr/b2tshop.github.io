@@ -203,6 +203,37 @@
             text-decoration: none;
             color: #333;
         }
+
+        /* Styles pour mobile */
+        @media (max-width: 768px) {
+            header {
+                font-size: 2rem;
+            }
+
+            .card {
+                width: 90%;
+                margin: 10px 0;
+            }
+
+            footer {
+                font-size: 1rem;
+            }
+        }
+
+        /* Styles pour desktop */
+        @media (min-width: 769px) {
+            header {
+                font-size: 3rem;
+            }
+
+            .card {
+                width: 300px;
+            }
+
+            footer {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
