@@ -4,181 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="B2T - Retrouver tout type de produits sur notre site.">
-    <title>B2TSHOP</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>B2TSHOP - Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'San Francisco', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            background: linear-gradient(to bottom, #ffffff, #f2f2f2);
-        }
+        /* Styles existants... */
+        /* Votre CSS déjà présent */
 
-        .container {
-            text-align: center;
-            padding: 50px 20px;
-            position: relative;
-        }
-
-        h1 {
-            font-size: 3rem;
-            color: #000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
-        }
-
-        .card {
-            background: linear-gradient(to bottom, #A3C1DA, #E7F0FF);
-            margin: 20px;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s;
-            display: inline-block;
-            width: calc(33% - 40px);
-            vertical-align: top;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .logo {
-            width: 100px;
-            margin-bottom: 20px;
-            animation: logoFloat 3s ease-in-out infinite;
-        }
-
-        @media (max-width: 600px) {
-            .logo {
-                width: 70px;
-            }
-
-            .card {
-                width: calc(90% - 40px);
-            }
-        }
-
-        #hamburger {
-            cursor: pointer;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 10;
-        }
-
-        #menu {
-            display: none;
-            position: fixed;
-            top: 60px;
-            left: 0;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            z-index: 20;
-            animation: slideIn 0.5s forwards;
-        }
-
-        #menu.active {
-            display: block;
-        }
-
-        .menu-item {
-            margin: 10px 0;
+        .fun-button {
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #4CAF50;
             color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: floatAnimation 3s ease-in-out infinite;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .fun-button:hover {
+            transform: scale(1.1);
         }
 
-        @keyframes logoFloat {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes float {
+        @keyframes floatAnimation {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-5px); }
         }
 
-        footer {
+        .hidden-image {
+            display: none;
+            margin-top: 20px;
             text-align: center;
-            padding: 20px;
-            background-color: #f1f1f1;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .social-icons img {
-            width: 30px;
-            margin: 0 10px;
         }
     </style>
 </head>
 <body>
-    <img src="picsart.jpg" alt="Logo B2TSHOP" class="logo">
-    <h1>Bienvenue sur B2TSHOP</h1>
+    <header>
+        <h1>Bienvenue sur B2TSHOP</h1>
+        <img src="picsart.png" alt="Logo B2T" class="logo">
+    </header>
+    
+    <div class="description">Retrouvez tout type de produits sur notre site.</div>
+    
     <div class="container">
         <div class="card">
             <h2>Boutique</h2>
             <p>Accédez à la boutique.</p>
         </div>
         <div class="card">
-            <h2>Mon compte</h2>
+            <h2>Mon Compte</h2>
             <p>Accédez à votre compte ou créez-en un.</p>
         </div>
     </div>
-    
-    <div id="hamburger">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Font_Awesome_5_solid_bars.svg" alt="Menu" width="30">
-    </div>
-    
-    <div id="menu">
-        <div class="menu-item">Se connecter</div>
-        <div class="menu-item">Créer un compte</div>
-        <div class="menu-item">Mon panier</div>
+
+    <button class="hamburger-icon" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="menu" id="menu">
+        <a href="#">Se connecter</a>
+        <a href="#">Créer un compte</a>
+        <a href="#">Mon panier</a>
     </div>
 
     <footer>
-        <p>Contactez-nous : <a href="mailto:b2tshop00@gmail.com">b2tshop00@gmail.com</a></p>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/hachmz04?igsh=Y3Z2MXcwdnc0M2Y1">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4vtphMtxRWfK6nO2CIbGfSETyEs79Dr6oPw&s" alt="Instagram">
+        <div class="socials">
+            <a href="https://www.instagram.com/hachmz04?igsh=Y3Z2MXcwdnc0M2Y1" target="_blank">
+                <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
             </a>
-            <a href="mailto:b2tshop00@gmail.com">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Gmail_Icon.svg" alt="Gmail">
+            <a href="mailto:b2tshop00@gmail.com" target="_blank">
+                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon_%282021%29.svg" alt="Gmail Logo">
             </a>
         </div>
     </footer>
 
+    <!-- Bouton animé -->
+    <button class="fun-button" id="funButton">Cliquez pour une blague !</button>
+    <div class="hidden-image" id="hiddenImage">
+        <img src="https://cdn.discordapp.com/attachments/1274521164403834895/1294633494122598452/Screenshot_20240930-124237.png?ex=670bb8e6&is=670a6766&hm=9870ea954e19067725570b1f3ccf267d2ef8f1cbecf566316cdd48e1e32bffdc&" alt="Blague" />
+    </div>
+
+    <audio id="audio" src="allo-salem.mp3"></audio>
+
     <script>
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
+        const funButton = document.getElementById('funButton');
+        const hiddenImage = document.getElementById('hiddenImage');
+        const audio = document.getElementById('audio');
 
         hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
             menu.classList.toggle('active');
+        });
+
+        funButton.addEventListener('click', () => {
+            let count = 0;
+            hiddenImage.style.display = 'block';
+            audio.loop = true; // Lancer le son en boucle
+            audio.play(); // Jouer le son
+
+            const interval = setInterval(() => {
+                count++;
+                if (count >= 10) {
+                    clearInterval(interval);
+                    audio.pause(); // Arrêter le son après 10 clics
+                }
+            }, 1000); // 1 seconde
         });
     </script>
 </body>
