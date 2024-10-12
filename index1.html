@@ -20,6 +20,7 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            overflow: hidden; /* Pour éviter le défilement */
         }
 
         @keyframes backgroundAnimation {
@@ -203,6 +204,19 @@
             text-decoration: none;
             color: #333;
         }
+
+        /* Styles pour le fond Discord */
+        .discord-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('discord-background.jpg'); /* Assurez-vous d'avoir l'image de fond Discord */
+            background-size: cover;
+            z-index: -1;
+            display: none; /* Masqué par défaut */
+        }
     </style>
 </head>
 <body>
@@ -221,6 +235,10 @@
         <div class="card">
             <h2>Mon Compte</h2>
             <p>Accédez à votre compte ou créez-en un.</p>
+        </div>
+        <div class="card" id="clickMeCard">
+            <h2>Clique moi</h2>
+            <p>Appuyez ici pour changer le fond.</p>
         </div>
     </div>
 
@@ -246,14 +264,27 @@
         </div>
     </footer>
 
+    <div class="discord-bg" id="discordBackground"></div> <!-- Ajout du fond Discord --!>
+    <audio id="backgroundSound" src="allo-salem.mp3" loop></audio> <!-- Remplacez 'path/to/your/sound.mp3' par le chemin vers votre fichier audio -->
+
     <script>
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
+        const discordBackground = document.getElementById('discordBackground');
+        const clickMeCard = document.getElementById('clickMeCard');
+        const backgroundSound = document.getElementById('backgroundSound');
 
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             menu.classList.toggle('active');
         });
+
+        clickMeCard.addEventListener('click', () => {
+            // Afficher l'image de fond Discord et jouer le son en boucle
+            discordBackground.style.display = 'block'; // Affiche l'image de fond
+            backgroundSound.play(); // Joue le son
+        });
     </script>
 </body>
 </html>
+   
