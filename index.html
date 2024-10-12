@@ -31,18 +31,23 @@
         header {
             text-align: center;
             padding: 30px;
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: bold;
             background: linear-gradient(90deg, #000000, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: titleAnimation 4s ease infinite;
+            animation: titleAnimation 4s ease infinite, flyAnimation 2s ease forwards;
         }
 
         @keyframes titleAnimation {
             0% { opacity: 0.8; }
             50% { opacity: 1; }
             100% { opacity: 0.8; }
+        }
+
+        @keyframes flyAnimation {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50px); }
         }
 
         .logo {
@@ -118,7 +123,8 @@
         }
 
         .socials a {
-            margin: 0 15px;
+            margin:
+                margin: 0 15px;
             transition: transform 0.3s ease;
             text-decoration: none;
             color: #fff;
@@ -131,6 +137,12 @@
 
         /* Styles pour l'icône Instagram */
         .instagram {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Styles pour l'icône Gmail */
+        .gmail {
             width: 40px;
             height: 40px;
         }
@@ -234,27 +246,31 @@
     </div>
 
     <header>
-        Bienvenue sur B2TSHOP
+        <div style="animation: flyAnimation 2s ease forwards;">B2T</div>
     </header>
 
     <div class="container">
-        <!-- Cartes de produits restaurées -->
+        <!-- Carte Boutique -->
         <div class="card">
-            <h2>Accessoires Élégants</h2>
-            <p>Explorez notre collection d'accessoires stylés pour toutes les occasions.</p>
+            <h2>Boutique</h2>
+            <p>Accédez à la boutique.</p>
         </div>
 
+        <!-- Carte Mon compte -->
         <div class="card">
-            <h2>Vêtements de Marque</h2>
-            <p>Trouvez des vêtements tendance et de qualité pour compléter votre style.</p>
+            <h2>Mon compte</h2>
+            <p>Accédez à votre compte ou créez-en un.</p>
         </div>
     </div>
 
-    <!-- Footer avec logo Instagram -->
+    <!-- Footer avec logo Instagram et Gmail -->
     <footer>
         <div class="socials">
             <a href="https://www.instagram.com/hachmz04?igsh=Y3Z2MXcwdnc0M2Y1" target="_blank">
                 <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
+            </a>
+            <a href="mailto:b2tshop00@gmail.com" target="_blank">
+                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Gmail_Icon.svg" alt="Gmail Logo">
             </a>
         </div>
     </footer>
