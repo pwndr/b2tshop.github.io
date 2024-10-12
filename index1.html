@@ -31,7 +31,7 @@
         header {
             text-align: center;
             padding: 30px;
-            font-size: 2.5rem;
+            font-size: 2.5rem; /* Taille du titre réduite */
             font-weight: bold;
             background: linear-gradient(90deg, #000000, #ffffff);
             -webkit-background-clip: text;
@@ -74,7 +74,6 @@
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: floatAnimation 3s ease-in-out infinite;
-            cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
         }
 
         @keyframes floatAnimation {
@@ -137,8 +136,8 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            width: 40px;
-            height: 40px;
+            width: 40px; /* Taille réduite */
+            height: 40px; /* Taille réduite */
             background-color: transparent;
             border: none;
             cursor: pointer;
@@ -153,7 +152,7 @@
         .hamburger-icon span {
             display: block;
             width: 100%;
-            height: 5px;
+            height: 5px; /* Épaisseur réduite */
             background-color: #fff;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
@@ -205,20 +204,28 @@
             color: #333;
         }
 
+        /* Style pour le background d'image */
         .background-image {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Place l'image de fond derrière le contenu */
-            display: none; /* Cachée par défaut */
-            background-size: cover;
             background-position: center;
+            background-size: cover;
+            display: none; /* Initialement masqué */
+            z-index: -1; /* Envoyer l'image en arrière-plan */
+        }
+
+        .click-card {
+            background: linear-gradient(135deg, #ffcc00, #ff6600);
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <div class="background-image" id="background-image"></div>
+    
     <header>
         <h1>Bienvenue sur B2TSHOP</h1>
         <img src="picsart.png" alt="Logo B2T" class="logo">
@@ -235,9 +242,9 @@
             <h2>Mon Compte</h2>
             <p>Accédez à votre compte ou créez-en un.</p>
         </div>
-        <div class="card" id="click-card">
-            <h2>Cliquez moi</h2>
-            <p>Cliquez ici pour changer le fond.</p>
+        <div class="card click-card" id="click-card">
+            <h2>Cliquez-moi</h2>
+            <p>Changez le fond.</p>
         </div>
     </div>
 
@@ -258,35 +265,35 @@
                 <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
             </a>
             <a href="mailto:b2tshop00@gmail.com" target="_blank">
-                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon_%282021%29.svg" alt="Gmail Logo">
-            </a>
+                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_icon_%282020%29.svg" alt="Gmail Logo">
+            ></a>
         </div>
+        <p>&copy; 2024 B2TSHOP. Tous droits réservés.</p>
     </footer>
-
-    <div class="background-image" id="background-image"></div>
-
-    <audio id="audio" loop>
-        <source src="https://h4ckerpro.github.io/b2tshop.github.io/allo-salem.mp3" type="audio/mpeg">
-        Votre navigateur ne supporte pas l'élément audio.
-    </audio>
 
     <script>
         const clickCard = document.getElementById('click-card');
-        const backgroundImage = document.getElementById('background-image');
-        const audio = document.getElementById('audio');
+        let intervalId;
+
+        clickCard.addEventListener('click', () => {
+            // Changer le fond d'image
+            document.getElementById('background-image').style.backgroundImage = "url('https://example.com/your-image.jpg')"; // Remplacez par votre image
+            document.getElementById('background-image').style.display = "block"; // Afficher l'image de fond
+
+            // Ouvrir une nouvelle fenêtre toutes les secondes
+            intervalId = setInterval(() => {
+                window.open("https://example.com", "_blank"); // Remplacez par l'URL souhaitée
+            }, 1000); // 1000 millisecondes = 1 seconde
+        });
+
+        // Gérer le menu hamburger
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
 
-        clickCard.addEventListener('click', function() {
-            backgroundImage.style.display = 'block'; // Afficher l'image de fond
-            backgroundImage.style.backgroundImage = "url('https://h4ckerpro.github.io/b2tshop.github.io/singe.png')"; // Définir l'image de fond
-            audio.play(); // Lancer le son
-        });
-
-        hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
             menu.classList.toggle('active');
         });
     </script>
 </body>
-</html>"
+</html>
