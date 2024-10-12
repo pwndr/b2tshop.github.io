@@ -12,9 +12,9 @@
             margin: 0;
             padding: 0;
             color: #fff;
-            background: linear-gradient(135deg, #001f3f, #ffffff); /* Bleu marine à blanc */
+            background: linear-gradient(135deg, #001f3f, #ffffff); /* Dégradé bleu marine à blanc */
             background-size: 400% 400%;
-            animation: backgroundAnimation 10s ease infinite;
+            animation: backgroundAnimation 10s ease infinite; /* Même animation que sur la page d'accueil */
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -34,12 +34,21 @@
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
             width: 300px;
             text-align: center;
+            animation: floatAnimation 3s ease-in-out infinite; /* Même animation de flottement que sur la page d'accueil */
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .login-container h2 {
             font-size: 2rem;
             color: #001f3f; /* Bleu marine */
             margin-bottom: 20px;
+            background: linear-gradient(90deg, #000000, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .login-container input {
@@ -49,6 +58,7 @@
             border: none;
             border-radius: 5px;
             font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
         }
 
         .login-container button {
@@ -59,6 +69,7 @@
             border: none;
             border-radius: 5px;
             font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
