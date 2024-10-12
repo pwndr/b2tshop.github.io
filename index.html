@@ -120,17 +120,33 @@
             background-color: transparent;
             border: none;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
             transition: transform 0.3s ease;
         }
 
-        .hamburger-icon svg {
-            fill: #fff;
+        .hamburger-icon span {
+            display: block;
             width: 100%;
-            height: 100%;
+            height: 6px;
+            background-color: #fff;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        .hamburger-icon:hover {
-            transform: scale(1.1);
+        /* État de transformation de l'icône en croix */
+        .hamburger-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(10px, -10px);
         }
 
         /* Styles pour le menu */
@@ -194,11 +210,9 @@
 
 <!-- Icône hamburger pour le menu -->
 <button class="hamburger-icon" id="toggleMenu">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80">
-        <rect width="100" height="20"></rect>
-        <rect y="30" width="100" height="20"></rect>
-        <rect y="60" width="100" height="20"></rect>
-    </svg>
+    <span></span>
+    <span></span>
+    <span></span>
 </button>
 
 <!-- Menu -->
@@ -214,7 +228,8 @@
     const menu = document.getElementById('menu');
 
     toggleMenu.addEventListener('click', () => {
-        menu.classList.toggle('show'); // Toggle la classe pour afficher/masquer le menu
+        toggleMenu.classList.toggle('active'); // Animation des barres
+        menu.classList.toggle('show'); // Toggle pour afficher/masquer le menu
     });
 </script>
 
