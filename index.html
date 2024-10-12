@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2TSHOP - Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            background: linear-gradient(135deg, #000000, #ffffff);
+            background-size: 400% 400%;
+            animation: backgroundAnimation 10s ease infinite;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative; /* Ajouté pour le positionnement de l'icône flottant */
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            text-align: center;
+            padding: 30px;
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #000000, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleAnimation 4s ease infinite;
+        }
+
+        @keyframes titleAnimation {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .logo {
+            width: 150px;
+            display: block;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #cccccc, #ffffff);
+            border-radius: 20px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+            width: 250px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            padding: 15px;
+            background: linear-gradient(90deg, #000000, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card p {
+            font-size: 1rem;
+            padding: 0 15px 15px;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Styles pour l'icône flottante */
+        .floating-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            animation: floatAnimation 3s ease-in-out infinite; /* Animation flottante */
+        }
+
+        .floating-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Styles pour le menu */
+        .menu {
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            display: none; /* Caché par défaut */
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0; /* Opacité à 0 pour animation */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Ajout de transition */
+            transform: translateY(-10px); /* Déplacement vers le haut */
+        }
+
+        /* Classe pour afficher le menu */
+        .menu.show {
+            display: block; /* Afficher le menu */
+            opacity: 1; /* Rendre visible */
+            transform: translateY(0); /* Remettre à la position normale */
+        }
+
+        /* Styles pour les options du menu */
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            display: block;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: #eeeeee;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://cdn.discordapp.com/attachments/1274521164403834895/1294366566103777281/picsart.jpg" alt="Logo B2TSHOP" class="logo">
+    Bienvenue chez B2TSHOP
+    <div class="description">B2T - Retrouver tout type de produits sur notre site.</div>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>Produits de revente</h2>
+        <p>Découvrez notre sélection de produits revendus à prix compétitifs.</p>
+    </div>
+    <div class="card">
+        <h2>Accessoires tendance</h2>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 B2TSHOP - Tous droits réservés
+</footer>
+
+<!-- Icône flottant -->
+<div class="floating-icon" id="toggleMenu">
+    <img src="https://cdn.discordapp.com/attachments/1274521164403834895/1294366566103777281/picsart.jpg" alt="Menu" style="width: 30px; height: 30px;">
+</div>
+
+<!-- Menu -->
+<div class="menu" id="menu">
+    <a href="#">Nous contacter</a>
+    <a href="#">Se connecter</a>
+    <a href="#">Créer un compte</a>
+    <a href="#">Mon panier</a>
+</div>
+
+<script>
+    const toggleMenu = document.getElementById('toggleMenu');
+    const menu = document.getElementById('menu');
+
+    toggleMenu.addEventListener('click', () => {
+        menu.classList.toggle('show'); // Toggle la classe pour afficher/masquer le menu
+    });
+</script>
+
+</body>
+</html>
