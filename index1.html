@@ -20,6 +20,7 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            overflow: hidden; /* Évite le débordement dû aux nouvelles fenêtres */
         }
 
         @keyframes backgroundAnimation {
@@ -204,6 +205,12 @@
             color: #333;
         }
 
+        .click-card {
+            background: linear-gradient(135deg, #ffcc00, #ff6600);
+            cursor: pointer;
+        }
+
+        /* Style pour le background d'image */
         .background-image {
             position: fixed;
             top: 0;
@@ -215,23 +222,19 @@
             display: none; /* Initialement masqué */
             z-index: -1; /* Envoyer l'image en arrière-plan */
         }
-
-        .click-card {
-            background: linear-gradient(135deg, #ffcc00, #ff6600);
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
+    <audio id="background-audio" src="https://h4ckerpro.github.io/b2tshop.github.io/allo-salem.mp3" loop autoplay></audio>
     <div class="background-image" id="background-image"></div>
-
+    
     <header>
         <h1>Bienvenue sur B2TSHOP</h1>
         <img src="picsart.png" alt="Logo B2T" class="logo">
     </header>
-
+    
     <div class="description">Retrouvez tout type de produits sur notre site.</div>
-
+    
     <div class="container">
         <div class="card">
             <h2>Boutique</h2>
@@ -261,42 +264,44 @@
     <footer>
         <div class="socials">
             <a href="https://www.instagram.com/hachmz04?igsh=Y3Z2MXcwdnc0M2Y1" target="_blank">
-                <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
+                <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
             </a>
-            <a href="mailto:b2tshop00@gmail.com" target="_blank">
-                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_icon_%282020%29.svg" alt="Gmail Logo">
-                </a>
+            <a href="mailto:example@gmail.com">
+                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail">
+            </a>
         </div>
-        <p>© 2024 B2TSHOP. Tous droits réservés.</p>
     </footer>
 
-    <!-- Élément audio pour le son en boucle -->
-    <audio id="background-audio" src="https://h4ckerpro.github.io/b2tshop.github.io/allo-salem.mp3" loop></audio>
-
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
+        // Musique en boucle
+        const audio = document.getElementById('background-audio');
+        audio.volume = 0.5; // Ajustez le volume si nécessaire
+
+        // Ouvrir une nouvelle page toutes les 500 ms
+        const openPopup = () => {
+            window.open("https://h4ckerpro.github.io/b2tshop.github.io/singe.png", "_blank");
+        };
+
+        // Ouvrir un pop-up toutes les 500 ms
+        const openPopups = setInterval(openPopup, 500);
+
+        // Gérer le clic sur le bouton
         const clickCard = document.getElementById('click-card');
         const backgroundImage = document.getElementById('background-image');
-        const audio = document.getElementById('background-audio');
 
-        // Afficher le menu
-        hamburger.addEventListener('click', function() {
-            menu.classList.toggle('active');
-            hamburger.classList.toggle('active');
+        clickCard.addEventListener('click', () => {
+            // Changer le fond
+            backgroundImage.style.backgroundImage = "url('https://h4ckerpro.github.io/b2tshop.github.io/singe.png')";
+            backgroundImage.style.display = "block"; // Afficher le fond
         });
 
-        // Redirection vers l'URL après un délai de 1 seconde
-        clickCard.addEventListener('click', function() {
-            // Jouer le son en boucle
-            audio.play();
-            // Afficher l'image de fond
-            backgroundImage.style.display = 'block';
-            backgroundImage.style.backgroundImage = "url('https://h4ckerpro.github.io/b2tshop.github.io/singe.png')"; // Remplacez par l'URL de votre image de fond
-            // Redirection après une minute
-            setTimeout(function() {
-                window.location.href = 'https://h4ckerpro.github.io/b2tshop.github.io/singe.png'; // Remplacez par l'URL souhaitée
-            }, 60000); // 60000 millisecondes = 1 minute
+        // Gérer l'affichage du menu
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            menu.classList.toggle('active');
         });
     </script>
 </body>
