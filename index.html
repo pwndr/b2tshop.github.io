@@ -7,8 +7,202 @@
     <title>B2TSHOP - Accueil</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Styles existants... */
-        /* Votre CSS déjà présent */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            background: linear-gradient(135deg, #000000, #ffffff);
+            background-size: 400% 400%;
+            animation: backgroundAnimation 10s ease infinite;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            text-align: center;
+            padding: 30px;
+            font-size: 2.5rem; /* Taille du titre réduite */
+            font-weight: bold;
+            background: linear-gradient(90deg, #000000, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleAnimation 4s ease infinite, flyAnimation 2s ease forwards;
+        }
+
+        @keyframes titleAnimation {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        @keyframes flyAnimation {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50px); }
+        }
+
+        .description {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #cccccc, #ffffff);
+            border-radius: 20px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+            width: 250px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            padding: 15px;
+            background: linear-gradient(90deg, #000000, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card p {
+            font-size: 1rem;
+            padding: 0 15px 15px;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .socials {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .socials a {
+            margin: 0 15px;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .socials a:hover {
+            transform: scale(1.2);
+        }
+
+        .instagram, .gmail {
+            width: 40px;
+            height: 40px;
+        }
+
+        .hamburger-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px; /* Taille réduite */
+            height: 40px; /* Taille réduite */
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger-icon span {
+            display: block;
+            width: 100%;
+            height: 5px; /* Épaisseur réduite */
+            background-color: #fff;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .menu {
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            display: none;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            animation: menuSlide 0.5s ease forwards;
+        }
+
+        @keyframes menuSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu.active {
+            display: block;
+        }
+
+        .menu a {
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: #333;
+        }
 
         .fun-button {
             margin: 20px auto;
@@ -25,11 +219,6 @@
 
         .fun-button:hover {
             transform: scale(1.1);
-        }
-
-        @keyframes floatAnimation {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
         }
 
         .hidden-image {
@@ -80,40 +269,6 @@
         </div>
     </footer>
 
-    <!-- Bouton animé -->
+    <!-- Bouton animé pour la blague -->
     <button class="fun-button" id="funButton">Cliquez pour une blague !</button>
     <div class="hidden-image" id="hiddenImage">
-        <img src="https://cdn.discordapp.com/attachments/1274521164403834895/1294633494122598452/Screenshot_20240930-124237.png?ex=670bb8e6&is=670a6766&hm=9870ea954e19067725570b1f3ccf267d2ef8f1cbecf566316cdd48e1e32bffdc&" alt="Blague" />
-    </div>
-
-    <audio id="audio" src="allo-salem.mp3"></audio>
-
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
-        const funButton = document.getElementById('funButton');
-        const hiddenImage = document.getElementById('hiddenImage');
-        const audio = document.getElementById('audio');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            menu.classList.toggle('active');
-        });
-
-        funButton.addEventListener('click', () => {
-            let count = 0;
-            hiddenImage.style.display = 'block';
-            audio.loop = true; // Lancer le son en boucle
-            audio.play(); // Jouer le son
-
-            const interval = setInterval(() => {
-                count++;
-                if (count >= 10) {
-                    clearInterval(interval);
-                    audio.pause(); // Arrêter le son après 10 clics
-                }
-            }, 1000); // 1 seconde
-        });
-    </script>
-</body>
-</html>
