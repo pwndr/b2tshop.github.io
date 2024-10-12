@@ -85,7 +85,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .login-container .password-strength {
+        .password-strength {
             height: 10px;
             width: 100%;
             border-radius: 5px;
@@ -151,7 +151,7 @@
             let strength = 0;
 
             // Vérification de la force du mot de passe
-            if (password.length >= 6) strength++; // Longueur minimale
+            if (password.length >= 18) strength++; // Longueur minimale
             if (/[A-Z]/.test(password)) strength++; // Lettre majuscule
             if (/[a-z]/.test(password)) strength++; // Lettre minuscule
             if (/[0-9]/.test(password)) strength++; // Chiffre
