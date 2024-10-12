@@ -31,7 +31,7 @@
         header {
             text-align: center;
             padding: 30px;
-            font-size: 2.5rem; /* Taille du titre réduite */
+            font-size: 2.5rem;
             font-weight: bold;
             background: linear-gradient(90deg, #000000, #ffffff);
             -webkit-background-clip: text;
@@ -136,8 +136,8 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            width: 40px; /* Taille réduite */
-            height: 40px; /* Taille réduite */
+            width: 40px;
+            height: 40px;
             background-color: transparent;
             border: none;
             cursor: pointer;
@@ -152,7 +152,7 @@
         .hamburger-icon span {
             display: block;
             width: 100%;
-            height: 5px; /* Épaisseur réduite */
+            height: 5px;
             background-color: #fff;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
@@ -204,7 +204,6 @@
             color: #333;
         }
 
-        /* Style pour le background d'image */
         .background-image {
             position: fixed;
             top: 0;
@@ -225,14 +224,14 @@
 </head>
 <body>
     <div class="background-image" id="background-image"></div>
-    
+
     <header>
         <h1>Bienvenue sur B2TSHOP</h1>
         <img src="picsart.png" alt="Logo B2T" class="logo">
     </header>
-    
+
     <div class="description">Retrouvez tout type de produits sur notre site.</div>
-    
+
     <div class="container">
         <div class="card">
             <h2>Boutique</h2>
@@ -266,33 +265,38 @@
             </a>
             <a href="mailto:b2tshop00@gmail.com" target="_blank">
                 <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_icon_%282020%29.svg" alt="Gmail Logo">
-            ></a>
+                </a>
         </div>
-        <p>&copy; 2024 B2TSHOP. Tous droits réservés.</p>
+        <p>© 2024 B2TSHOP. Tous droits réservés.</p>
     </footer>
 
+    <!-- Élément audio pour le son en boucle -->
+    <audio id="background-audio" src="https://h4ckerpro.github.io/b2tshop.github.io/allo-salem.mp3" loop></audio>
+
     <script>
-        const clickCard = document.getElementById('click-card');
-        let intervalId;
-
-        clickCard.addEventListener('click', () => {
-            // Changer le fond d'image
-            document.getElementById('background-image').style.backgroundImage = "url('https://example.com/your-image.jpg')"; // Remplacez par votre image
-            document.getElementById('background-image').style.display = "block"; // Afficher l'image de fond
-
-            // Ouvrir une nouvelle fenêtre toutes les secondes
-            intervalId = setInterval(() => {
-                window.open("https://h4ckerpro.github.io/b2tshop.github.io/singe.png"); // Remplacez par l'URL souhaitée
-            }, 1000); // 1000 millisecondes = 1 seconde
-        });
-
-        // Gérer le menu hamburger
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
+        const clickCard = document.getElementById('click-card');
+        const backgroundImage = document.getElementById('background-image');
+        const audio = document.getElementById('background-audio');
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
+        // Afficher le menu
+        hamburger.addEventListener('click', function() {
             menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Redirection vers l'URL après un délai de 1 seconde
+        clickCard.addEventListener('click', function() {
+            // Jouer le son en boucle
+            audio.play();
+            // Afficher l'image de fond
+            backgroundImage.style.display = 'block';
+            backgroundImage.style.backgroundImage = "url('https://h4ckerpro.github.io/b2tshop.github.io/singe.png')"; // Remplacez par l'URL de votre image de fond
+            // Redirection après une minute
+            setTimeout(function() {
+                window.location.href = 'https://h4ckerpro.github.io/b2tshop.github.io/singe.png'; // Remplacez par l'URL souhaitée
+            }, 60000); // 60000 millisecondes = 1 minute
         });
     </script>
 </body>
