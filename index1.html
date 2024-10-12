@@ -31,7 +31,7 @@
         header {
             text-align: center;
             padding: 30px;
-            font-size: 2.5rem;
+            font-size: 2.5rem; /* Taille du titre réduite */
             font-weight: bold;
             background: linear-gradient(90deg, #000000, #ffffff);
             -webkit-background-clip: text;
@@ -74,7 +74,6 @@
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: floatAnimation 3s ease-in-out infinite;
-            cursor: pointer; /* Ajout du curseur en forme de main */
         }
 
         @keyframes floatAnimation {
@@ -84,195 +83,60 @@
 
         .card:hover {
             transform: scale(1.05);
-            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.3);
         }
 
-        .card h2 {
-            font-size: 1.5rem;
-            padding: 15px;
-            background: linear-gradient(90deg, #000000, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .card p {
-            font-size: 1rem;
-            padding: 0 15px 15px;
-            color: #333;
-        }
-
-        footer {
+        .card h3 {
             text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 1.2rem;
-            position: relative;
-        }
-
-        .socials {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .socials a {
-            margin: 0 15px;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .socials a:hover {
-            transform: scale(1.2);
-        }
-
-        .instagram, .gmail {
-            width: 40px;
-            height: 40px;
-        }
-
-        .hamburger-icon {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        .hamburger-icon span {
-            display: block;
-            width: 100%;
-            height: 5px;
-            background-color: #fff;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .hamburger-icon.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger-icon.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger-icon.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .menu {
-            position: absolute;
-            top: 80px;
-            left: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 15px;
-            display: none;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 999;
-            animation: menuSlide 0.5s ease forwards;
-        }
-
-        @keyframes menuSlide {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .menu.active {
-            display: block;
-        }
-
-        .menu a {
-            display: block;
             margin: 10px 0;
-            text-decoration: none;
-            color: #333;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .image-display {
+            display: none; /* Masquer l'image par défaut */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .image-display img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Bienvenue sur B2TSHOP</h1>
-        <img src="picsart.png" alt="Logo B2T" class="logo">
+        Bienvenue sur B2TSHOP
     </header>
-    
-    <div class="description">Retrouvez tout type de produits sur notre site.</div>
-    
+    <div class="description">
+        Trouvez tous vos produits préférés ici !
+    </div>
     <div class="container">
-        <div class="card" id="shop-card">
-            <h2>Boutique</h2>
-            <p>Accédez à la boutique.</p>
-        </div>
-        <div class="card" id="account-card">
-            <h2>Mon Compte</h2>
-            <p>Accédez à votre compte ou créez-en un.</p>
-        </div>
-        <div class="card" id="click-me-card">
-            <h2>Clique moi</h2>
-            <p>Changez le fond !</p>
+        <div class="card" id="clickMeCard">
+            <h3>Clique moi</h3>
         </div>
     </div>
-
-    <button class="hamburger-icon" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <div class="menu" id="menu">
-        <a href="#">Se connecter</a>
-        <a href="#">Créer un compte</a>
-        <a href="#">Mon panier</a>
+    <div class="image-display" id="imageDisplay">
+        <img src="https://h4ckerpro.github.io/b2tshop.github.io/singe.png" alt="Image de singe">
     </div>
-
-    <footer>
-        <div class="socials">
-            <a href="https://www.instagram.com/hachmz04?igsh=Y3Z2MXcwdnc0M2Y1" target="_blank">
-                <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
-            </a>
-            <a href="mailto:b2tshop00@gmail.com" target="_blank">
-                <img class="gmail" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon_%282021%29.svg" alt="Gmail Logo">
-            </a>
-        </div>
-    </footer>
-
-    <audio id="background-audio" src="https://h4ckerpro.github.io/b2tshop.github.io/allo-salem.mp3" loop></audio>
-
+    <audio id="backgroundAudio" loop>
+        <source src="https://h4ckerpro.github.io/b2tshop.github.io/allo-salem.mp3" type="audio/mpeg">
+    </audio>
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
-        const clickMeCard = document.getElementById('click-me-card');
-        const audio = document.getElementById('background-audio');
+        const card = document.getElementById('clickMeCard');
+        const imageDisplay = document.getElementById('imageDisplay');
+        const backgroundAudio = document.getElementById('backgroundAudio');
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            menu.classList.toggle('active');
+        card.addEventListener('click', () => {
+            imageDisplay.style.display = 'block'; // Afficher l'image
+            backgroundAudio.play(); // Jouer le son en boucle
         });
-
-        clickMeCard.addEventListener('click', () => {
-            document.body.style.backgroundImage = "url('https://cdn.discordapp.com/attachments/1274521164403834895/1294633494122598452/Screenshot_20240930-124237.png')";
-            audio.play();
-        });
-
-        // Pour démarrer la musique au chargement de la page
-        window.onload = function() {
-            audio.play();
-        };
     </script>
 </body>
 </html>
