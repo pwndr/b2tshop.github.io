@@ -20,7 +20,6 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            overflow: hidden; /* Pour éviter le défilement */
         }
 
         @keyframes backgroundAnimation {
@@ -32,7 +31,7 @@
         header {
             text-align: center;
             padding: 30px;
-            font-size: 2.5rem; /* Taille du titre réduite */
+            font-size: 2.5rem;
             font-weight: bold;
             background: linear-gradient(90deg, #000000, #ffffff);
             -webkit-background-clip: text;
@@ -75,6 +74,7 @@
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: floatAnimation 3s ease-in-out infinite;
+            cursor: pointer; /* Ajout du curseur en forme de main */
         }
 
         @keyframes floatAnimation {
@@ -137,8 +137,8 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            width: 40px; /* Taille réduite */
-            height: 40px; /* Taille réduite */
+            width: 40px;
+            height: 40px;
             background-color: transparent;
             border: none;
             cursor: pointer;
@@ -153,7 +153,7 @@
         .hamburger-icon span {
             display: block;
             width: 100%;
-            height: 5px; /* Épaisseur réduite */
+            height: 5px;
             background-color: #fff;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
@@ -204,19 +204,6 @@
             text-decoration: none;
             color: #333;
         }
-
-        /* Styles pour le fond Discord */
-        .discord-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('discord-background.jpg'); /* Assurez-vous d'avoir l'image de fond Discord */
-            background-size: cover;
-            z-index: -1;
-            display: none; /* Masqué par défaut */
-        }
     </style>
 </head>
 <body>
@@ -228,17 +215,17 @@
     <div class="description">Retrouvez tout type de produits sur notre site.</div>
     
     <div class="container">
-        <div class="card">
+        <div class="card" id="shop-card">
             <h2>Boutique</h2>
             <p>Accédez à la boutique.</p>
         </div>
-        <div class="card">
+        <div class="card" id="account-card">
             <h2>Mon Compte</h2>
             <p>Accédez à votre compte ou créez-en un.</p>
         </div>
-        <div class="card" id="clickMeCard">
+        <div class="card" id="click-me-card">
             <h2>Clique moi</h2>
-            <p>Appuyez ici pour changer le fond.</p>
+            <p>Changez le fond !</p>
         </div>
     </div>
 
@@ -264,15 +251,13 @@
         </div>
     </footer>
 
-    <div class="discord-bg" id="discordBackground"></div> <!-- Ajout du fond Discord --!>
-    <audio id="backgroundSound" src="allo-salem.mp3" loop></audio> <!-- Remplacez 'path/to/your/sound.mp3' par le chemin vers votre fichier audio -->
+    <audio id="background-audio" src="https://h4ckerpro.github.io/b2tshop.github.io/allo-salem.mp3" loop></audio>
 
     <script>
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
-        const discordBackground = document.getElementById('discordBackground');
-        const clickMeCard = document.getElementById('clickMeCard');
-        const backgroundSound = document.getElementById('backgroundSound');
+        const clickMeCard = document.getElementById('click-me-card');
+        const audio = document.getElementById('background-audio');
 
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
@@ -280,11 +265,14 @@
         });
 
         clickMeCard.addEventListener('click', () => {
-            // Afficher l'image de fond Discord et jouer le son en boucle
-            discordBackground.style.display = 'block'; // Affiche l'image de fond
-            backgroundSound.play(); // Joue le son
+            document.body.style.backgroundImage = "url('https://cdn.discordapp.com/attachments/1274521164403834895/1294633494122598452/Screenshot_20240930-124237.png')";
+            audio.play();
         });
+
+        // Pour démarrer la musique au chargement de la page
+        window.onload = function() {
+            audio.play();
+        };
     </script>
 </body>
 </html>
-   
