@@ -108,6 +108,31 @@
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             font-size: 1.2rem;
+            position: relative;
+        }
+
+        .socials {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .socials a {
+            margin: 0 15px;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .socials a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Styles pour l'icône Instagram */
+        .instagram {
+            width: 40px;
+            height: 40px;
         }
 
         /* Styles pour l'icône hamburger */
@@ -158,80 +183,90 @@
             border-radius: 10px;
             padding: 15px;
             display: none; /* Caché par défaut */
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-            opacity: 0; /* Opacité à 0 pour animation */
-            transition: opacity 0.3s ease, transform 0.3s ease; /* Ajout de transition */
-            transform: translateY(-10px); /* Déplacement vers le haut */
+            box-shadow:
+                0px 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            animation: menuSlide 0.5s ease forwards;
         }
 
-        /* Classe pour afficher le menu */
-        .menu.show {
-            display: block; /* Afficher le menu */
-            opacity: 1; /* Rendre visible */
-            transform: translateY(0); /* Remettre à la position normale */
+        @keyframes menuSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Styles pour les options du menu */
-        .menu a {
-            text-decoration: none;
-            color: #333;
-            padding: 10px;
+        .menu.active {
             display: block;
-            font-weight: bold;
-            transition: background-color 0.3s;
+        }
+
+        .menu a {
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: #000;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
         }
 
         .menu a:hover {
-            background-color: #eeeeee;
+            color: #007bff;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="https://cdn.discordapp.com/attachments/1274521164403834895/1294366566103777281/picsart.jpg" alt="Logo B2TSHOP" class="logo">
-    Bienvenue chez B2TSHOP
-    <div class="description">B2T - Retrouver tout type de produits sur notre site.</div>
-</header>
+    <!-- Icône hamburger -->
+    <button class="hamburger-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-<div class="container">
-    <div class="card">
-        <h2>Produits de revente</h2>
-        <p>Découvrez notre sélection de produits revendus à prix compétitifs.</p>
+    <!-- Menu caché -->
+    <div class="menu" id="menu">
+        <a href="#">Se connecter</a>
+        <a href="#">Créer un compte</a>
+        <a href="#">Mon panier</a>
     </div>
-    <div class="card">
-        <h2>Accessoires tendance</h2>
+
+    <header>
+        Bienvenue sur B2TSHOP
+    </header>
+
+    <div class="container">
+        <!-- Cartes de produits -->
+        <div class="card">
+            <h2>Produit 1</h2>
+            <p>Description du produit 1.</p>
+        </div>
+
+        <div class="card">
+            <h2>Produit 2</h2>
+            <p>Description du produit 2.</p>
+        </div>
     </div>
-</div>
 
-<footer>
-    &copy; 2024 B2TSHOP - Tous droits réservés
-</footer>
+    <!-- Footer avec logo Instagram -->
+    <footer>
+        <div class="socials">
+            <a href="https://www.instagram.com/hachmz04?igsh=Y3Z2MXcwdnc0M2Y1" target="_blank">
+                <img class="instagram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
+            </a>
+        </div>
+    </footer>
 
-<!-- Icône hamburger pour le menu -->
-<button class="hamburger-icon" id="toggleMenu">
-    <span></span>
-    <span></span>
-    <span></span>
-</button>
-
-<!-- Menu -->
-<div class="menu" id="menu">
-    <a href="#">Nous contacter</a>
-    <a href="#">Se connecter</a>
-    <a href="#">Créer un compte</a>
-    <a href="#">Mon panier</a>
-</div>
-
-<script>
-    const toggleMenu = document.getElementById('toggleMenu');
-    const menu = document.getElementById('menu');
-
-    toggleMenu.addEventListener('click', () => {
-        toggleMenu.classList.toggle('active'); // Animation des barres
-        menu.classList.toggle('show'); // Toggle pour afficher/masquer le menu
-    });
-</script>
-
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            const hamburger = document.querySelector('.hamburger-icon');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
