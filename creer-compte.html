@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Créer un compte sur B2TSHOP">
+    <title>B2TSHOP - Créer un compte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            background: linear-gradient(135deg, #001f3f, #ffffff);
+            background-size: 400% 400%;
+            animation: backgroundAnimation 10s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .signup-container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .signup-container h2 {
+            font-size: 2rem;
+            color: #001f3f;
+            margin-bottom: 20px;
+        }
+
+        .signup-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .signup-container input {
+            font-size: 1rem;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #001f3f;
+            border-radius: 10px;
+        }
+
+        .signup-container button {
+            font-size: 1.2rem;
+            padding: 10px;
+            background-color: #001f3f;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-container button:hover {
+            background-color: #004080;
+        }
+
+        .signup-container p {
+            font-size: 1rem;
+            margin-top: 20px;
+            color: #001f3f;
+        }
+
+        .signup-container a {
+            color: #001f3f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <h2>Créer un compte</h2>
+        <form action="#" method="POST">
+            <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
+            <button type="submit">S'inscrire</button>
+        </form>
+        <p>Vous avez déjà un compte ? <a href="login.html">Connectez-vous</a></p>
+    </div>
+
+</body>
+</html>
